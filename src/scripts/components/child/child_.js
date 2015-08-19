@@ -14,10 +14,10 @@
     function componentFunction($rootScope) {
         return {
             scope: {
+                parentMethod : '&',
                 bindValue : '='
             },
             link: function (scope, el, attrs) {
-                debugger
                 console.log('child link function', $rootScope);
             }
         };

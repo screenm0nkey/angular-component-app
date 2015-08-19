@@ -8,7 +8,6 @@
 
     function controllerFunction($scope) {
         var vm = this;
-
         vm.bindValue = "someval"
     }
 
@@ -31,7 +30,12 @@
         return {
            link : function (scope, el, attrs) {
                var vm = scope.vm;
-               vm.valueForChildTwo = "Two"
+
+               vm.someMethod = someMethod;
+
+               function someMethod (val) {
+                   alert(val)
+               }
            }
         };
     }

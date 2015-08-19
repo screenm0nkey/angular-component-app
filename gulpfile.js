@@ -1,4 +1,28 @@
 var gulp = require('gulp');
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var del = require('del');
+
+var PATHS = {
+    src: {
+        sass : [
+            'src/styles/**/*.scss',
+            'src/scripts/components/**/*.scss'
+        ]
+    }
+};
+
+gulp.task('clean', function(done) {
+    del(['.tmp'], done);
+});
+
+gulp.task('sass', function () {
+    gulp.src(PATHS.src.sass)
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('.tmp'))
+        .pipe(concat('index.css'))
+        .pipe(gulp.dest('src'));
+});
 
 
 gulp.task('play', function () {
@@ -21,4 +45,7 @@ gulp.task('play', function () {
     });
 });
 
-gulp.task('default', ['play']);
+
+gulp.watch(PATHS.src.sass, ['sass', 'clean']);
+
+gulp.task('default', ['sass', 'clean', 'play']);

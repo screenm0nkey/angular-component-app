@@ -1,0 +1,8 @@
+* {
+  font-family: 'Arial'; }
+
+.app-component {
+  border: solid 1px red; }
+
+.child-component {
+  border: solid 1px blue; }

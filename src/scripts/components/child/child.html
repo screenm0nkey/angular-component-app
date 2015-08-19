@@ -1,4 +1,6 @@
 <div class="child-component">
     <h3>I'm a child</h3>
     <p>This value "<strong>{{vm.bindValue}}</strong>" is coming from the parent app component</p>
+
+    <button ng-click="vm.parentMethod({val:vm.bindValue})">Call parent method</button>
 </div>
