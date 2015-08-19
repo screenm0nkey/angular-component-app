@@ -9,6 +9,5 @@
 *.iml
 Thumbs.db
 node_modules
-bower_components
 dist
 load-env.bat
