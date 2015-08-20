@@ -7,7 +7,6 @@
 
 
     function controllerFunction($scope) {
-        debugger
     }
 
 

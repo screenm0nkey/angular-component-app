@@ -5,12 +5,13 @@ describe('Component: appComponent', function () {
     describe('Directive: appComponent', function () {
         var scope, $compile, element;
 
+
         beforeEach(function () {
             module('myApp');
+            module("myApp.templates");
             module('myApp.components.app');
 
             inject(function ($rootScope, _$compile_) {
-                debugger
                 scope = $rootScope.$new();
                 $compile = _$compile_;
             });
@@ -21,9 +22,8 @@ describe('Component: appComponent', function () {
             element = angular.element('<app-component></app-component>');
             element = $compile(element)(scope);
             scope.$digest();
-            expect(element).toHaveClass('app-component');
+            //var ex = expect(element);
+            //expect(!!ex.toHaveClass).toBeTruthy();
         });
     });
-
-
 });

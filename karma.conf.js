@@ -23,17 +23,22 @@ module.exports = function (config) {
             'src/scripts/config/config.js',
             'src/scripts/config/component-loader.js',
             'src/scripts/**/*_.js',
-            'src/scripts/**/*_spec.js'
+            'src/scripts/**/*_spec.js',
+            'src/scripts/components/**/*.html' // need this for ng-html2js
         ],
+
+        preprocessors: {
+            'src/scripts/components/**/*.html': ['ng-html2js']
+        },
+
+        ngHtml2JsPreprocessor: {
+            stripPrefix: 'src/',
+            moduleName: 'myApp.templates'
+        },
 
 
         // list of files to exclude
         exclude: [],
-
-
-        // preprocess matching files before serving them to the browser
-        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {},
 
 
         // test results reporter to use
