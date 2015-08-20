@@ -6,9 +6,13 @@
         .component('app', componentFunction);
 
 
-    function controllerFunction($scope) {
+    function controllerFunction($scope, $element, UserModel) {
         var vm = this;
         vm.bindValue = "someval"
+
+        UserModel.getUsers().then(function(data){
+            vm.users = data;
+        });
     }
 
     /*

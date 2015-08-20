@@ -16,9 +16,7 @@
                 parentMethod : '&',
                 bindValue : '='
             },
-            link: function (scope, el, attrs) {
-                console.log('child link function', $rootScope);
-            }
+            link: function (scope, el, attrs) {}
         };
     }
 }());

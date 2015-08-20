@@ -1,29 +1,56 @@
 'use strict';
 
 describe('Component: appComponent', function () {
+    beforeEach(function () {
+        module('myApp');
+        module("myApp.templates");
+    });
 
-    describe('Directive: appComponent', function () {
+
+    describe('Link: appComponent', function () {
         var scope, $compile, element;
 
-
         beforeEach(function () {
-            module('myApp');
-            module("myApp.templates");
-            module('myApp.components.app');
-
             inject(function ($rootScope, _$compile_) {
                 scope = $rootScope.$new();
                 $compile = _$compile_;
+                element = angular.element('<app-component></app-component>');
+                element = $compile(element)(scope);
+                scope.$digest();
+                // assign the isolate scope
+                scope = element.find(':first').scope();
             });
         });
 
-        //id.substr(id.lastIndexOf('/') + 1)
         it('should have the component class', function () {
-            element = angular.element('<app-component></app-component>');
-            element = $compile(element)(scope);
-            scope.$digest();
-            //var ex = expect(element);
-            //expect(!!ex.toHaveClass).toBeTruthy();
+            expect(element).toHaveClass('app-component');
+        });
+
+        it('should have a method', function () {
+            expect(scope.vm.someMethod).toBeFunction();
+        });
+    });
+
+
+    describe('Controller: app-component', function () {
+        var Ctrl, scope, element;
+
+        beforeEach(function () {
+            inject(function ($controller, $rootScope) {
+                scope = $rootScope.$new();
+                element = angular.element('<app-component></app-component>');
+                Ctrl = $controller('appComponentCtrl as vm', {
+                    $scope: scope,
+                    $element: element
+                });
+            });
+        });
+
+        describe('Something', function () {
+            it('should be', function () {
+                expect(scope.vm === Ctrl).toBeTruthy();
+                expect(Ctrl.bindValue).toBe("someval");
+            });
         });
     });
 });

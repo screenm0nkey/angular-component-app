@@ -15,16 +15,23 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            // app lib dependencies
             'bower_components/jquery/dist/jquery.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/cmelion-component-factory/angular-component-factory.js',
+            // app configuration files for bootstrapping app
             'src/scripts/app.js',
             'src/scripts/config/config.js',
             'src/scripts/config/component-loader.js',
+            // files to be tested
             'src/scripts/**/*_.js',
-            'src/scripts/**/*_spec.js',
-            'src/scripts/components/**/*.html' // need this for ng-html2js
+            // jasmine matchers
+            'test/jasmine-matchers/*.js',
+            // need this for ng-html2js. look at Elements tab in Devtools when debugging
+            'src/scripts/components/**/*.html',
+            // test spec files
+            'src/scripts/**/*_spec.js'
         ],
 
         preprocessors: {
@@ -66,7 +73,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: ['Chrome'],//PhantomJS
 
 
         // Continuous Integration mode
