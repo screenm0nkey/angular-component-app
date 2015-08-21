@@ -4,11 +4,14 @@
     "appPath": "src",
     "dependencies": {
         "angular": ">=1.3.8",
-        "angular-mocks": ">=1.3.8",
         "jquery": "2.1.4",
-        "cmelion-component-factory": "^1.3.8"
+        "cmelion-component-factory": "^1.3.8",
+        "ng-symbiosis-utils": "~0.0.0"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "angular-mocks": ">=1.3.8",
+        "ng-improved-testing": ">=0.2.3"
+    },
     "resolutions": {
         "angular": "1.4"
     }

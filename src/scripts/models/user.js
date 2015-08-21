@@ -11,7 +11,14 @@
 
         function getUsers(params) {
             return $q(function(resolve, reject){
-                $http.get('/myapp/users').then(resolve, reject);
+                function responseHandler (res) {
+                    if (res.data) {
+                        resolve(res.data)
+                    } else {
+                        reject()
+                    }
+                }
+                $http.get('/someapi/myapp/users').then(responseHandler, responseHandler);
             });
         }
     }

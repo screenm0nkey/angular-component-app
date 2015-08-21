@@ -1,0 +1,14 @@
+{
+    "status": 200,
+    "mock": [
+        {
+            "name": "Nick Lowman"
+        },
+        {
+            "name": "Liz Lowman"
+        },
+        {
+            "name": "Pixie Lowman"
+        }
+    ]
+}
