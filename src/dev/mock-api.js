@@ -76,7 +76,6 @@
 
             return {
                 'request': function (config) {
-
                     if (isApiCall(config.url)){
                         var url = buildFullUrl(config);
                         if (config.method === "GET") {
