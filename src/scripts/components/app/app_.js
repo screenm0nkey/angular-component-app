@@ -30,7 +30,7 @@
 
     // the componentFunction is the directive.
     function componentFunction($rootScope) {
-        // override DDO values set in the component-factory
+        // the return value overrides DDO values set in the component-factory
         return {
             //templateUrl: "sausage/components/app/bummmm.html",
             link: function (scope, el, attrs) {
