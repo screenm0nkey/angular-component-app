@@ -20,6 +20,7 @@ module.exports = function (config) {
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/cmelion-component-factory/angular-component-factory.js',
+            'bower_components/ng-symbiosis-utils/ng-symbiosis-utils.src.js',
             // app configuration files for bootstrapping app
             'src/scripts/app.js',
             'src/scripts/config/config.js',

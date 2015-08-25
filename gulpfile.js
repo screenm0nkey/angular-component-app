@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var del = require('del');
+var runSequence = require('run-sequence');
 
 var PATHS = {
     src: {
@@ -25,7 +26,7 @@ gulp.task('sass', function () {
 });
 
 
-gulp.task('play', function () {
+gulp.task('serve', function () {
     var http = require('http');
     var connect = require('connect');
     var serveStatic = require('serve-static');
@@ -48,4 +49,6 @@ gulp.task('play', function () {
 
 gulp.watch(PATHS.src.sass, ['sass', 'clean']);
 
-gulp.task('default', ['sass', 'clean', 'play']);
+gulp.task('play', function (done){
+    runSequence('sass', 'clean', 'serve', done);
+});
