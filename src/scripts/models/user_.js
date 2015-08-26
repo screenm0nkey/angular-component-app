@@ -13,9 +13,9 @@
             return $q(function(resolve, reject){
                 function responseHandler (res) {
                     if (res.data) {
-                        resolve(res.data)
+                        resolve(res.data);
                     } else {
-                        reject()
+                        reject();
                     }
                 }
                 $http.get('/someapi/myapp/users').then(responseHandler, responseHandler);

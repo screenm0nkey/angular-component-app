@@ -8,7 +8,7 @@
 
     function controllerFunction($scope, $element, UserModel) {
         var vm = this;
-        vm.bindValue = "someval"
+        vm.bindValue = "someval";
 
         UserModel.getUsers().then(function(data){
             vm.users = data;
@@ -32,14 +32,14 @@
     function componentFunction($rootScope) {
         // the return value overrides DDO values set in the component-factory
         return {
-            //templateUrl: "sausage/components/app/bummmm.html",
+            //templateUrl: "sausage/components/app/app.html",
             link: function (scope, el, attrs) {
                 var vm = scope.vm;
 
                 vm.someMethod = someMethod;
 
                 function someMethod(val) {
-                    alert(val)
+                    alert(val);
                 }
             }
         };

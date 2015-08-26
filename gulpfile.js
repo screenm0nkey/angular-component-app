@@ -2,10 +2,12 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var del = require('del');
+var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
 
 var PATHS = {
     src: {
+        js : 'src/scripts/**/*_.js',
         sass : [
             'src/styles/**/*.scss',
             'src/scripts/components/**/*.scss'
@@ -14,7 +16,7 @@ var PATHS = {
 };
 
 gulp.task('clean', function(done) {
-    del(['.tmp'], done);
+    del(['.tmp'], {force : true},  done);
 });
 
 gulp.task('sass', function () {
@@ -24,6 +26,14 @@ gulp.task('sass', function () {
         .pipe(concat('index.css'))
         .pipe(gulp.dest('src'));
 });
+
+gulp.task('lint', function(){
+    return gulp.src(PATHS.src.js)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+
 
 
 gulp.task('serve', function () {
@@ -46,9 +56,11 @@ gulp.task('serve', function () {
     });
 });
 
-
-gulp.watch(PATHS.src.sass, ['sass', 'clean']);
+gulp.task('watch', ['lint'], function(){
+    gulp.watch(PATHS.src.js, ['lint']);
+    gulp.watch(PATHS.src.sass, ['sass', 'clean']);
+});
 
 gulp.task('play', function (done){
-    runSequence('sass', 'clean', 'serve', done);
+    runSequence('clean', 'sass', 'clean', 'watch', 'serve', done);
 });
