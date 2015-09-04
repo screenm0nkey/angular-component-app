@@ -29,16 +29,30 @@
 
             function mockGet(url){
                 var response = load(getUri(url) + '_GET');
-                $httpBackend.whenGET(url).respond(function () {
-                    return [response.status, response.mock];
-                });
+                // check to see if the mock is to be loaded 'response.mock'
+                if (response && response.mock){
+                    $httpBackend.whenGET(url).respond(function () {
+                        var status = response.status || 200;
+                        var jsonResponse = response.json || {};
+                        return [status, jsonResponse];
+                    });
+                } else {
+                    $httpBackend.whenGET(url).passThrough();
+                }
             }
 
             function mockPost(url){
                 var response = load(getUri(url) + '_POST');
-                $httpBackend.whenPOST(url).respond(function () {
-                    return [response.status, response.mock];
-                });
+
+                if (response && response.mock){
+                    $httpBackend.whenPOST(url).respond(function () {
+                        var status = response.status || 200;
+                        var jsonResponse = response.json || {};
+                        return [status, jsonResponse];
+                    });
+                } else {
+                    $httpBackend.whenPOST(url).passThrough();
+                }
             }
 
             function getUri(url){
@@ -58,7 +72,10 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', './dev/json/' + path + '.json', false);
                 xhr.send();
-                return angular.fromJson(xhr.response);
+                if (xhr.status === 200){
+                    return angular.fromJson(xhr.response);
+                }
+                return null;
             }
 
             function buildFullUrl(config){

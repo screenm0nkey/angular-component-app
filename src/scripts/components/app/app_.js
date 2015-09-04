@@ -8,10 +8,15 @@
 
     function controllerFunction($scope, $element, UserModel) {
         var vm = this;
-        vm.bindValue = "someval";
 
+        vm.bindValue = "someval";
+        // this is coming from the mocks
         UserModel.getUsers().then(function(data){
             vm.users = data;
+        });
+        // this is coming from the api
+        UserModel.getMessage().then(function(data){
+            vm.message = data;
         });
     }
 

@@ -1,3 +1,6 @@
+/**
+ * configuration file for the app
+ */
 (function () {
     'use strict';
 

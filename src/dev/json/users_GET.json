@@ -1,6 +1,7 @@
 {
     "status": 200,
-    "mock": [
+    "mock" : true,
+    "json": [
         {
             "name": "Nick Lowman"
         },

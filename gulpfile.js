@@ -33,28 +33,28 @@ gulp.task('lint', function(){
         .pipe(jshint.reporter('default'));
 });
 
-
-
-
 gulp.task('serve', function () {
-    var http = require('http');
-    var connect = require('connect');
-    var serveStatic = require('serve-static');
+    var fs = require('fs');
+    var path = require('path');
+    var express = require('express');
+    var path = require('path');
     var open = require('open');
-    var port = 3000;
-    var app;
+    var app = express();
 
-    app = connect();
+    app.use('/lib', express.static(path.join(__dirname, '/bower_components')));
+    app.use('/components', express.static(path.join(__dirname, '/src/scripts/components')));
+    app.use(express.static(path.join(__dirname, '/src')));
 
-    app.use('/lib', serveStatic(__dirname + '/bower_components'));
-    app.use('/components', serveStatic(__dirname + '/src/scripts/components'));
-    app.use(serveStatic(__dirname + '/src'));
-
-    http.createServer(app).listen(port, function () {
-        console.log('Server listening on port', port);
-        open('http://localhost:' + port);
+    app.use('/someapi/myapp/message', function (req, res) {
+        res.json({"msg":"this is from the backend"});
+        res.end();
     });
+
+    app.set('port', process.env.PORT || 3000);
+    app.listen(app.get('port'));
+//    open('http://localhost:' + app.get('port'));
 });
+
 
 gulp.task('watch', ['lint'], function(){
     gulp.watch(PATHS.src.js, ['lint']);
@@ -62,5 +62,6 @@ gulp.task('watch', ['lint'], function(){
 });
 
 gulp.task('play', function (done){
+    // clean twice to stop gulp read errors
     runSequence('clean', 'sass', 'clean', 'watch', 'serve', done);
 });
