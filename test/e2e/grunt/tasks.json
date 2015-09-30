@@ -1,0 +1,39 @@
+{
+    "debugging-mocks": [
+        "clean:coverageE2E",
+        "sass",
+        "copy",
+        "instrument",
+        "sails-linker",
+        "ngconstant",
+        "connect:debugMocks"
+    ],
+
+    "e2e-tests-without-coverage" : [
+        "clean:coverageE2E",
+        "sass",
+        "copy",
+        "instrument",
+        "sails-linker",
+        "ngconstant",
+        "connect:coverageE2E",
+        "protractor"
+    ],
+
+    "e2e-tests-with-coverage" : [
+        "clean:coverageE2E",
+        "sass",
+        "copy",
+        "instrument",
+        "sails-linker",
+        "ngconstant",
+        "connect:coverageE2E",
+        "protractor_coverage:chrome",
+        "makeReport",
+        "open:coverage"
+    ],
+
+    "default" : [
+        "e2e-tests-with-coverage"
+    ]
+}
